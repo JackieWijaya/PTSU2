@@ -15,6 +15,9 @@
         $no = 1;
     @endphp
 
+    <a href="{{ url('data_karyawan') }}" class="btn btn-primary btn-block mb-2"><i class="fa fa-arrow-left"></i>
+        Kembali</a>
+
     <div class="card">
         <div class="card-header">
             <ul class="nav nav-pills bg-white d-flex m-0" id="tab-menu">

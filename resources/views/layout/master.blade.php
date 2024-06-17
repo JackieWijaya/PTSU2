@@ -130,7 +130,15 @@
                         @if (Auth::user()->role == 'HRD')
                             <li class="nav-item menu-open">
                                 <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-database"></i>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="icon icon-tabler icons-tabler-outline icon-tabler-database">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M12 6m-8 0a8 3 0 1 0 16 0a8 3 0 1 0 -16 0" />
+                                        <path d="M4 6v6a8 3 0 0 0 16 0v-6" />
+                                        <path d="M4 12v6a8 3 0 0 0 16 0v-6" />
+                                    </svg>
                                     <p>
                                         Master Data
                                         <i class="right fas fa-angle-left"></i>
@@ -157,7 +165,17 @@
                             <li class="nav-item">
                                 <a href="{{ url('data_pelamar') }}"
                                     class="nav-link {{ Request::is('data_pelamar*') ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-file-contract"></i>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="icon icon-tabler icons-tabler-outline icon-tabler-file-cv">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                                        <path
+                                            d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+                                        <path d="M11 12.5a1.5 1.5 0 0 0 -3 0v3a1.5 1.5 0 0 0 3 0" />
+                                        <path d="M13 11l1.5 6l1.5 -6" />
+                                    </svg>
                                     <p>
                                         Data Pelamar
                                     </p>
@@ -168,7 +186,18 @@
                         <li class="nav-item">
                             <a href="{{ url('data_karyawan') }}"
                                 class="nav-link {{ Request::is('data_karyawan*') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-address-card"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-id">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path
+                                        d="M3 4m0 3a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v10a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3z" />
+                                    <path d="M9 10m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                                    <path d="M15 8l2 0" />
+                                    <path d="M15 12l2 0" />
+                                    <path d="M7 16l10 0" />
+                                </svg>
                                 <p>
                                     Data Karyawan
                                 </p>
@@ -178,7 +207,17 @@
                         <li class="nav-item">
                             <a href="{{ url('presensi') }}"
                                 class="nav-link {{ Request::is('presensi*') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-calendar-check"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-calendar-check">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M11.5 21h-5.5a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v6" />
+                                    <path d="M16 3v4" />
+                                    <path d="M8 3v4" />
+                                    <path d="M4 11h16" />
+                                    <path d="M15 19l2 2l4 -4" />
+                                </svg>
                                 <p>
                                     Presensi
                                 </p>
@@ -189,7 +228,20 @@
                             <li class="nav-item">
                                 <a href="{{ url('rekap_presensi') }}"
                                     class="nav-link {{ Request::is('rekap_presensi*') ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-layer-group"></i>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard-list">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path
+                                            d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
+                                        <path
+                                            d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
+                                        <path d="M9 12l.01 0" />
+                                        <path d="M13 12l2 0" />
+                                        <path d="M9 16l.01 0" />
+                                        <path d="M13 16l2 0" />
+                                    </svg>
                                     <p>
                                         Rekap Presensi
                                     </p>
@@ -197,9 +249,101 @@
                             </li>
                         @endif
 
+                        <li class="nav-item">
+                            <a href="{{ url('manajemen_jabatan') }}"
+                                class="nav-link {{ Request::is('manajemen_jabatan*') ? 'active' : '' }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path
+                                        d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
+                                    <path
+                                        d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
+                                    <path
+                                        d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
+                                    <path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" />
+                                    <path d="M12 9l0 3" />
+                                </svg>
+                                <p>
+                                    Manajemen Jabatan
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ url('phk') }}"
+                                class="nav-link {{ Request::is('phk*') ? 'active' : '' }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-user-x">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                                    <path d="M6 21v-2a4 4 0 0 1 4 -4h3.5" />
+                                    <path d="M22 22l-5 -5" />
+                                    <path d="M17 22l5 -5" />
+                                </svg>
+                                <p>
+                                    PHK
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ url('cuti') }}"
+                                class="nav-link {{ Request::is('cuti*') ? 'active' : '' }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-beach">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M17.553 16.75a7.5 7.5 0 0 0 -10.606 0" />
+                                    <path d="M18 3.804a6 6 0 0 0 -8.196 2.196l10.392 6a6 6 0 0 0 -2.196 -8.196z" />
+                                    <path
+                                        d="M16.732 10c1.658 -2.87 2.225 -5.644 1.268 -6.196c-.957 -.552 -3.075 1.326 -4.732 4.196" />
+                                    <path d="M15 9l-3 5.196" />
+                                    <path
+                                        d="M3 19.25a2.4 2.4 0 0 1 1 -.25a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 1 .25" />
+                                </svg>
+                                <p>
+                                    Cuti
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ url('manajemen_kinerja') }}"
+                                class="nav-link {{ Request::is('manajemen_kinerja*') ? 'active' : '' }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-scale">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M7 20l10 0" />
+                                    <path d="M6 6l6 -1l6 1" />
+                                    <path d="M12 3l0 17" />
+                                    <path d="M9 12l-3 -6l-3 6a3 3 0 0 0 6 0" />
+                                    <path d="M21 12l-3 -6l-3 6a3 3 0 0 0 6 0" />
+                                </svg>
+                                <p>
+                                    Manajemen Kinerja
+                                </p>
+                            </a>
+                        </li>
+
                         <li class="nav-item menu-open">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-wrench"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-settings">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path
+                                        d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" />
+                                    <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+                                </svg>
                                 <p>
                                     Pengaturan
                                     <i class="right fas fa-angle-left"></i>
@@ -336,6 +480,21 @@
             });
         });
     </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var isPresensiAllowed = false; // Ganti dengan kondisi yang sesuai
+
+            if (!isPresensiAllowed) {
+                var presensiItem = document.getElementById('presensi-item');
+                var link = presensiItem.querySelector('a');
+                link.removeAttribute('href'); // Menghapus atribut href
+                link.style.pointerEvents = 'none'; // Menonaktifkan event klik
+                link.style.color = 'gray'; // Mengubah warna link menjadi abu-abu
+            }
+        });
+    </script>
+
 
     @include('sweetalert::alert')
 

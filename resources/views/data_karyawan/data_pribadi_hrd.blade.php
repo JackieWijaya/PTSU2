@@ -17,6 +17,9 @@
         }
     </style>
 
+    <a href="{{ url('data_karyawan') }}" class="btn btn-primary btn-block mb-2"><i class="fa fa-arrow-left"></i>
+        Kembali</a>
+
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Data Pribadi {{ $data_pribadi->nama_lengkap }}</h3>

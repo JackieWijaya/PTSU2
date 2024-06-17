@@ -13,9 +13,11 @@ use App\Http\Controllers\PelatihanSertifikatController;
 use App\Http\Controllers\PengalamanKerjaController;
 use App\Http\Controllers\BahasaAsingController;
 use App\Http\Controllers\DataTampungController;
-use App\Http\Controllers\PengaturanPresensiController;
 use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\RekapPresensiController;
+use App\Http\Controllers\ManajemenJabatanController;
+
+use App\Http\Controllers\PengaturanPresensiController;
 use App\Http\Controllers\ProfilController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -61,8 +63,13 @@ Route::resource('/bahasa_asing', BahasaAsingController::class)->middleware(['aut
 Route::resource('/data_tampung', DataTampungController::class)->middleware(['auth', 'verified']);
 Route::resource('/presensi', PresensiController::class)->middleware(['auth', 'verified']);
 Route::post('/presensi/store', [PresensiController::class, 'store'])->middleware(['auth', 'verified']);
-Route::resource('/pengaturan_presensi', PengaturanPresensiController::class)->middleware(['auth', 'verified']);
+Route::resource('/manajemen_jabatan', ManajemenJabatanController::class)->middleware(['auth', 'verified']);
+Route::get('/get_devisi_jabatan', [ManajemenJabatanController::class, 'getDevisiJabatan'])->name('getDevisiJabatan');
+
+
+
 Route::resource('/rekap_presensi', RekapPresensiController::class)->middleware(['auth', 'verified']);
+Route::resource('/pengaturan_presensi', PengaturanPresensiController::class)->middleware(['auth', 'verified']);
 Route::resource('/profil', ProfilController::class)->middleware(['auth', 'verified']);
 
 // Route::middleware('auth')->group(function () {
