@@ -24,7 +24,7 @@
     // generate alamat URL untuk proses hapus data 
     $('.btn-hapus').click(function() {
         let id = $(this).attr('data-id');
-        $('#formDelete').attr('action', '/manajemen_jabatan/' + id);
+        $('#formDelete').attr('action', '/manajemen_kinerja/' + id);
 
         let nik = $(this).attr('data-nik');
         let nama = $(this).attr('data-nama');

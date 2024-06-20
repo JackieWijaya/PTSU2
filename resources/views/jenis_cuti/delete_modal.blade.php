@@ -24,11 +24,11 @@
     // generate alamat URL untuk proses hapus data 
     $('.btn-hapus').click(function() {
         let id = $(this).attr('data-id');
-        $('#formDelete').attr('action', '/manajemen_jabatan/' + id);
+        $('#formDelete').attr('action', '/jenis_cuti/' + id);
 
-        let nik = $(this).attr('data-nik');
         let nama = $(this).attr('data-nama');
-        $('#mb-konfirmasi').text("Apakah Anda Yakin Ingin Menghapus Data Dengan NIK " + nik + " " +
+        $('#mb-konfirmasi').text("Apakah Anda Yakin Ingin Menghapus Data Jenis Cuti Dengan Kode " + id +
+            " Jenis Cuti " +
             nama + " ?");
     })
 

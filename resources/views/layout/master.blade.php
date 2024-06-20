@@ -159,6 +159,13 @@
                                             <p>Jabatan</p>
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url('jenis_cuti') }}"
+                                            class="nav-link {{ Request::is('jenis_cuti*') ? 'active' : '' }}">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Jenis Cuti</p>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
 
@@ -481,7 +488,7 @@
         });
     </script>
 
-    <script>
+    {{-- <script>
         document.addEventListener('DOMContentLoaded', function() {
             var isPresensiAllowed = false; // Ganti dengan kondisi yang sesuai
 
@@ -493,8 +500,7 @@
                 link.style.color = 'gray'; // Mengubah warna link menjadi abu-abu
             }
         });
-    </script>
-
+    </script> --}}
 
     @include('sweetalert::alert')
 

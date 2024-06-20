@@ -1,6 +1,6 @@
 @extends('layout.master')
 
-@section('title', 'Manajemen Jabatan')
+@section('title', 'Manajemen Kinerja')
 
 @section('content')
     <style>
@@ -16,23 +16,11 @@
     @endphp
 
     <div class="card">
-        <div class="card-header d-flex align-items-center justify-content-between">
-            @if (Auth::user()->role == 'HRD')
-                <a href="{{ url('manajemen_jabatan/create') }}" class="btn btn-primary">Tambah</a>
-            @endif
-
-            <div class="d-flex align-items-center ml-auto">
-                <span class="mr-2">
-                    <i class="fas fa-square text-success"></i> Promosi
-                </span>
-                <span class="mr-2">
-                    <i class="fas fa-square text-secondary"></i> Mutasi
-                </span>
-                <span class="mr-2">
-                    <i class="fas fa-square text-danger"></i> Demosi
-                </span>
+        @if (Auth::user()->role == 'HRD')
+            <div class="card-header d-flex align-items-center justify-content-between">
+                <a href="{{ url('manajemen_kinerja/create') }}" class="btn btn-primary">Tambah</a>
             </div>
-        </div>
+        @endif
 
         <div class="card-body" id="data-center">
             <table id="example1" class="table table-bordered table-striped">
@@ -42,8 +30,8 @@
                         <th>Info</th>
                         <th>NIK</th>
                         <th>Nama Karyawan</th>
-                        <th>Jabatan Lama</th>
-                        <th>Jabatan Baru</th>
+                        <th>Jenis</th>
+                        <th>Foto / File Bukti</th>
                         <th>Alasan</th>
                         <th>Tanggal</th>
                         @if (Auth::user()->role == 'HRD')
@@ -52,36 +40,39 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($manajemen_jabatans as $item)
+                    @foreach ($manajemen_kinerjas as $item)
                         <tr>
                             <td>{{ $no++ }}</td>
                             <td>
                                 <button id="info" class="btn btn-sm btn-info" data-toggle="modal"
                                     data-target="#infoModal" data-id="{{ $item->id }}" data-nik="{{ $item->nik }}"
                                     data-jenis="{{ $item->jenis }}" data-nama="{{ $item->data_pribadi->nama_lengkap }}"
-                                    data-devisilama="{{ $item->devisi_lama }}" data-jabatanlama="{{ $item->jabatan_lama }}"
-                                    data-devisibaru="{{ $item->devisi_baru }}" data-jabatanbaru="{{ $item->jabatan_baru }}"
-                                    data-alasan="{{ $item->alasan }}" data-catatan="{{ $item->catatan }}"
+                                    data-foto="{{ $item->foto }}" data-alasan="{{ $item->alasan }}"
+                                    data-catatan="{{ $item->catatan }}"
                                     data-tgl="{{ \Carbon\Carbon::parse($item->created_at)->format('d F Y') }}"><i
                                         class="bi bi-info-circle"></i></button>
                             </td>
                             <td>{{ $item->nik }}</td>
                             <td>{{ $item->data_pribadi->nama_lengkap }}</td>
-                            <td>{{ $item->jabatan_lama }}</td>
                             <td>
-                                @if ($item->jenis == 'Promosi')
-                                    <small class="badge badge-success">{{ $item->jabatan_baru }}</small>
-                                @elseif ($item->jenis == 'Demosi')
-                                    <small class="badge badge-danger">{{ $item->jabatan_baru }}</small>
+                                @if ($item->jenis == 'Reward')
+                                    <small class="badge badge-success">{{ $item->jenis }}</small>
                                 @else
-                                    <small class="badge badge-secondary">{{ $item->jabatan_lama }}</small>
+                                    <small class="badge badge-danger">{{ $item->jenis }}</small>
+                                @endif
+                            </td>
+                            <td>
+                                @if ($item->foto == null || $item->foto == '')
+                                    -
+                                @else
+                                    <a href="{{ asset('storage/FotoRewardPunishment/' . $item->foto) }}">Lihat</a>
                                 @endif
                             </td>
                             <td>{{ $item->alasan }}</td>
                             <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d F Y') }}</td>
                             @if (Auth::user()->role == 'HRD')
                                 <td>
-                                    <a href="{{ url('manajemen_jabatan/' . $item->id . '/edit') }}"
+                                    <a href="{{ url('manajemen_kinerja/' . $item->id . '/edit') }}"
                                         class="btn btn-sm btn-warning"><span class="bi bi-pencil-square"></span></a>
                                     <button class="btn btn-sm btn-danger btn-hapus" data-id="{{ $item->id }}"
                                         data-nik="{{ $item->nik }}" data-nama="{{ $item->data_pribadi->nama_lengkap }}"
@@ -96,6 +87,6 @@
         </div>
     </div>
 
-    @include('manajemen_jabatan.info_modal')
-    @include('manajemen_jabatan.delete_modal')
+    @include('manajemen_kinerja.info_modal')
+    @include('manajemen_kinerja.delete_modal')
 @endsection

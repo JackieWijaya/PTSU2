@@ -8,6 +8,7 @@ use App\Models\jabatan;
 use App\Models\manajemen_jabatan;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -19,7 +20,14 @@ class ManajemenJabatanController extends Controller
     public function index()
     {
         //
-        $manajemen_jabatans = manajemen_jabatan::all();
+        $data_pribadi = data_pribadi::where('users_id', Auth::user()->id)->first();
+
+        if (Auth::user()->role == 'HRD') {
+            $manajemen_jabatans = manajemen_jabatan::all();
+            
+        } else {
+            $manajemen_jabatans = manajemen_jabatan::where('nik', $data_pribadi->nik)->get();
+        }
         return view('manajemen_jabatan.index')->with('manajemen_jabatans', $manajemen_jabatans);
     }
 
@@ -32,7 +40,7 @@ class ManajemenJabatanController extends Controller
         $data_karyawan = User::select('users.*', 'data_pribadis.*')
             ->join('data_pribadis', 'users.no_hp', '=', 'data_pribadis.no_hp')
             ->where('users.role', '!=', 'HRD')
-            ->where('data_pribadis.nik', '!=', '-')
+            ->where('data_pribadis.nik', '!=', null)
             ->where('data_pribadis.jabatans_id', '!=', null)
             ->get();
 
@@ -87,13 +95,15 @@ class ManajemenJabatanController extends Controller
             'jabatan_baru' => [
                 Rule::requiredIf($jenis != 'Mutasi')
             ],
-            'catatan'    => 'required'
+            'alasan'       => 'required',
+            'catatan'      => 'required'
         ],
         [
-            'nik.required'          => 'Pilih Karyawan',
+            'nik.required'          => 'Pilih Nama Karyawan',
             'jenis.required'        => 'Pilih Jenis',
             'devisi_baru.required'  => 'Pilih Devisi Baru',
             'jabatan_baru.required' => 'Pilih Jabatan Baru',
+            'alasan.required'       => 'Alasan Harus Diisi',
             'catatan.required'      => 'Catatan Harus Diisi'
         ]);           
         
@@ -117,6 +127,7 @@ class ManajemenJabatanController extends Controller
         $manajemen_jabatan->jabatan_lama  = $request->jabatan_lama;
         $manajemen_jabatan->devisi_baru   = $devisi_baru;
         $manajemen_jabatan->jabatan_baru  = $jabatan_baru;
+        $manajemen_jabatan->alasan        = $validateData['alasan'];
         $manajemen_jabatan->catatan       = $validateData['catatan'];
         $manajemen_jabatan->save(); //Simpan Ke Tabel
 
@@ -189,13 +200,15 @@ class ManajemenJabatanController extends Controller
             'jabatan_baru' => [
                 Rule::requiredIf($jenis != 'Mutasi')
             ],
-            'catatan'    => 'required'
+            'alasan'       => 'required',
+            'catatan'      => 'required'
         ],
         [
-            'nik.required'          => 'Pilih Karyawan',
+            'nik.required'          => 'Pilih Nama Karyawan',
             'jenis.required'        => 'Pilih Jenis',
             'devisi_baru.required'  => 'Pilih Devisi Baru',
             'jabatan_baru.required' => 'Pilih Jabatan Baru',
+            'alasan.required'       => 'Alasan Harus Diisi',
             'catatan.required'      => 'Catatan Harus Diisi'
         ]);           
         
@@ -218,6 +231,7 @@ class ManajemenJabatanController extends Controller
         $manajemen_jabatan->jabatan_lama  = $request->jabatan_lama;
         $manajemen_jabatan->devisi_baru   = $devisi_baru;
         $manajemen_jabatan->jabatan_baru  = $jabatan_baru;
+        $manajemen_jabatan->alasan        = $validateData['alasan'];
         $manajemen_jabatan->catatan       = $validateData['catatan'];
         $manajemen_jabatan->save(); //Simpan Ke Tabel
 
@@ -249,6 +263,16 @@ class ManajemenJabatanController extends Controller
     public function destroy(manajemen_jabatan $manajemen_jabatan)
     {
         //
-        echo 'Test';
+        $devisi_lama = devisi::where('nama_devisi', $manajemen_jabatan->devisi_lama)->first();
+        $jabatan_lama = jabatan::where('nama_jabatan', $manajemen_jabatan->jabatan_lama)->first();
+
+        $data_pribadi = data_pribadi::where('nik', $manajemen_jabatan->nik)->first();
+        $data_pribadi->devisis_id  = $devisi_lama->id;
+        $data_pribadi->jabatans_id = $jabatan_lama->id;
+        $data_pribadi->save();
+
+        $manajemen_jabatan->delete();
+        Alert::success('Berhasil', "Data Berhasil Dihapus");
+        return redirect()->route('manajemen_jabatan.index');
     }
 }

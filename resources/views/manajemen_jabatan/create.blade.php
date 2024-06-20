@@ -114,6 +114,16 @@
                     </div>
 
                     <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                        <label for="alasan">Alasan</label>
+                        <input type="text" class="form-control @error('alasan') is-invalid @enderror" name="alasan"
+                            id="alasan" value="{{ old('alasan') }}" placeholder="Enter Alasan">
+
+                        @error('alasan')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group col-lg-12 col-md-12 col-sm-12">
                         <label for="catatan">Catatan</label>
                         <input type="text" class="form-control @error('catatan') is-invalid @enderror" name="catatan"
                             id="catatan" value="{{ old('catatan') }}" placeholder="Enter Catatan">

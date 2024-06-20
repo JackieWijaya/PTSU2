@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DevisiController;
 use App\Http\Controllers\JabatanController;
+use App\Http\Controllers\JenisCutiController;
 use App\Http\Controllers\DataPribadiController;
 use App\Http\Controllers\DataPelamarController;
 use App\Http\Controllers\DataKaryawanController;
@@ -16,7 +17,10 @@ use App\Http\Controllers\DataTampungController;
 use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\RekapPresensiController;
 use App\Http\Controllers\ManajemenJabatanController;
-
+use App\Http\Controllers\PHKController;
+use App\Http\Controllers\StatusPHKController;
+use App\Http\Controllers\CutiController;
+use App\Http\Controllers\ManajemenKinerjaController;
 use App\Http\Controllers\PengaturanPresensiController;
 use App\Http\Controllers\ProfilController;
 use Illuminate\Support\Facades\Route;
@@ -51,6 +55,7 @@ Route::get('/', function () {
 
 Route::resource('/devisi', DevisiController::class)->middleware(['auth', 'verified']);
 Route::resource('/jabatan', JabatanController::class)->middleware(['auth', 'verified']);
+Route::resource('/jenis_cuti', JenisCutiController::class)->middleware(['auth', 'verified']);
 Route::resource('/data_pelamar', DataPelamarController::class);
 Route::resource('/data_pribadi', DataPribadiController::class)->middleware(['auth', 'verified']);
 Route::resource('/data_karyawan', DataKaryawanController::class)->middleware(['auth', 'verified']);
@@ -63,12 +68,14 @@ Route::resource('/bahasa_asing', BahasaAsingController::class)->middleware(['aut
 Route::resource('/data_tampung', DataTampungController::class)->middleware(['auth', 'verified']);
 Route::resource('/presensi', PresensiController::class)->middleware(['auth', 'verified']);
 Route::post('/presensi/store', [PresensiController::class, 'store'])->middleware(['auth', 'verified']);
+Route::resource('/rekap_presensi', RekapPresensiController::class)->middleware(['auth', 'verified']);
 Route::resource('/manajemen_jabatan', ManajemenJabatanController::class)->middleware(['auth', 'verified']);
 Route::get('/get_devisi_jabatan', [ManajemenJabatanController::class, 'getDevisiJabatan'])->name('getDevisiJabatan');
-
-
-
-Route::resource('/rekap_presensi', RekapPresensiController::class)->middleware(['auth', 'verified']);
+Route::resource('/phk', PHKController::class)->middleware(['auth', 'verified']);
+Route::resource('/status_phk', StatusPHKController::class)->middleware(['auth', 'verified']);
+Route::resource('/cuti', CutiController::class)->middleware(['auth', 'verified']);
+Route::post('/cuti/getsisacuti', [CutiController::class, 'getsisacuti'])->middleware(['auth', 'verified']);
+Route::resource('/manajemen_kinerja', ManajemenKinerjaController::class)->middleware(['auth', 'verified']);
 Route::resource('/pengaturan_presensi', PengaturanPresensiController::class)->middleware(['auth', 'verified']);
 Route::resource('/profil', ProfilController::class)->middleware(['auth', 'verified']);
 
