@@ -31,7 +31,7 @@
                     <td>{{ $data_pribadi->tempat_lahir }}</td>
                     <th>Tanggal Lahir</th>
                     <td>
-                        @if ($data_pribadi->tanggal_lahir == '-')
+                        @if ($data_pribadi->tanggal_lahir == null || $data_pribadi->tanggal_lahir == '-')
                             -
                         @else
                             {{ \Carbon\Carbon::parse($data_pribadi->tanggal_lahir)->format('d F Y') }}

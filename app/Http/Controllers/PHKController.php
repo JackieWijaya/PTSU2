@@ -21,7 +21,7 @@ class PHKController extends Controller
         $user = User::where('id', Auth::user()->id)->first();
         $data_pribadi = data_pribadi::where('users_id', Auth::user()->id)->first();
 
-        if (Auth::user()->role == 'HRD') {
+        if (Auth::user()->role == 'Manager' || Auth::user()->role == 'HRD') {
             $phks = phk::all();
         } else {
             $phks = phk::where('nik', $data_pribadi->nik)->get();
@@ -40,7 +40,7 @@ class PHKController extends Controller
                 ->where('users.role', '!=', 'HRD')
                 ->where('users.status_user', '=', 'Aktif')
                 ->where('data_pribadis.nik', '!=', null)
-                ->where('data_pribadis.jabatans_id', '!=', null)
+                // ->where('data_pribadis.jabatans_id', '!=', null)
                 ->get();
         $data_pribadi = data_pribadi::where('users_id', Auth::user()->id)->first();
 
@@ -114,7 +114,7 @@ class PHKController extends Controller
                 ->join('data_pribadis', 'users.no_hp', '=', 'data_pribadis.no_hp')
                 ->where('users.role', '!=', 'HRD')
                 ->where('data_pribadis.nik', '!=', null)
-                ->where('data_pribadis.jabatans_id', '!=', null)
+                // ->where('data_pribadis.jabatans_id', '!=', null)
                 ->get();
         return view('phk.edit')->with('phk', $phk)->with('data_karyawan', $data_karyawan);
     }

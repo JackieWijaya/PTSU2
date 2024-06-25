@@ -27,10 +27,10 @@ class DataKaryawanController extends Controller
     public function index()
     {
         //
-        if (Auth::user()->role == 'HRD'){
+        if (Auth::user()->role == 'Manager' || Auth::user()->role == 'HRD'){
             $data_karyawan = User::select('users.*', 'data_pribadis.*')
                 ->join('data_pribadis', 'users.no_hp', '=', 'data_pribadis.no_hp')
-                ->where('users.role', '!=', 'HRD')
+                ->where('users.role', '=', 'Karyawan')
                 ->get();
             return view('data_karyawan.index')->with('data_karyawan', $data_karyawan);
         } else {
@@ -102,7 +102,7 @@ class DataKaryawanController extends Controller
         $data_pribadi = new data_pribadi();
         $data_pribadi->users_id            = $user->id; 
         $data_pribadi->nama_lengkap        = $validateData['nama_lengkap'];
-        $data_pribadi->tanggal_lahir       = '-';
+        // $data_pribadi->tanggal_lahir       = '-';
         $data_pribadi->jenis_kelamin       = $validateData['jenis_kelamin'];
         $data_pribadi->tempat_lahir        = '-';
         $data_pribadi->no_hp               = $validateData['no_hp'];

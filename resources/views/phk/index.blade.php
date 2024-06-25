@@ -16,15 +16,18 @@
     @endphp
 
     <div class="card">
-        <div class="card-header d-flex align-items-center justify-content-between">
-            <a href="{{ url('phk/create') }}" class="btn btn-primary @if ($user->status_user == 'Tidak Aktif') disabled @endif">Tambah
-                @if (Auth::user()->role == 'HRD')
-                    PHK
-                @else
-                    Pengajuan
-                @endif
-            </a>
-        </div>
+        @if (Auth::user()->role != 'Manager')
+            <div class="card-header d-flex align-items-center justify-content-between">
+                <a href="{{ url('phk/create') }}"
+                    class="btn btn-primary @if ($user->status_user == 'Tidak Aktif') disabled @endif">Tambah
+                    @if (Auth::user()->role != 'Karyawan')
+                        PHK
+                    @else
+                        Pengajuan
+                    @endif
+                </a>
+            </div>
+        @endif
 
         <div class="card-body" id="data-center">
             <table id="example1" class="table table-bordered table-striped">
@@ -50,7 +53,7 @@
                             <td>{{ $item->catatan }}</td>
                             <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d F Y') }}</td>
                             <td>
-                                @if (Auth::user()->role == 'HRD')
+                                @if (Auth::user()->role != 'Karyawan')
                                     @if ($item->status == '1')
                                         -
                                     @else
@@ -59,18 +62,22 @@
                                         @elseif ($item->status == 'Ditolak')
                                             <small class="badge badge-danger">Ditolak</small>
                                         @else
-                                            <button class="btn btn-sm btn-success btn-diterima" type="button"
-                                                data-toggle="modal" data-target="#diterimaModal"
-                                                data-id="{{ $item->id }}" data-nik="{{ $item->nik }}"
-                                                data-nama="{{ $item->data_pribadi->nama_lengkap }}">
-                                                <i class="bi bi-check-circle"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-danger btn-ditolak" type="button"
-                                                data-toggle="modal" data-target="#ditolakModal"
-                                                data-id="{{ $item->id }}" data-nik="{{ $item->nik }}"
-                                                data-nama="{{ $item->data_pribadi->nama_lengkap }}">
-                                                <i class="bi bi-x-circle"></i>
-                                            </button>
+                                            @if (Auth::user()->role == 'HRD')
+                                                <button class="btn btn-sm btn-success btn-diterima" type="button"
+                                                    data-toggle="modal" data-target="#diterimaModal"
+                                                    data-id="{{ $item->id }}" data-nik="{{ $item->nik }}"
+                                                    data-nama="{{ $item->data_pribadi->nama_lengkap }}">
+                                                    <i class="bi bi-check-circle"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-danger btn-ditolak" type="button"
+                                                    data-toggle="modal" data-target="#ditolakModal"
+                                                    data-id="{{ $item->id }}" data-nik="{{ $item->nik }}"
+                                                    data-nama="{{ $item->data_pribadi->nama_lengkap }}">
+                                                    <i class="bi bi-x-circle"></i>
+                                                </button>
+                                            @else
+                                                <small class="badge badge-secondary">Menunggu</small>
+                                            @endif
                                         @endif
                                     @endif
                                 @else

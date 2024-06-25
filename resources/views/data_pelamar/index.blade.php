@@ -59,16 +59,20 @@
                                 <div class="d-flex align-items-center justify-content-center">
 
                                     @if ($item->status == null)
-                                        <button class="btn btn-sm btn-success mr-1 btn-diterima" type="button"
-                                            data-toggle="modal" data-target="#diterimaModal" data-id="{{ $item->id }}"
-                                            data-nama="{{ $item->nama_lengkap }}">
-                                            <i class="bi bi-check-circle"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-danger btn-ditolak" type="button" data-toggle="modal"
-                                            data-target="#ditolakModal" data-id="{{ $item->id }}"
-                                            data-nama="{{ $item->nama_lengkap }}">
-                                            <i class="bi bi-x-circle"></i>
-                                        </button>
+                                        @if (Auth::user()->role == 'Manager')
+                                            <small class="badge badge-secondary">Menunggu</small>
+                                        @else
+                                            <button class="btn btn-sm btn-success mr-1 btn-diterima" type="button"
+                                                data-toggle="modal" data-target="#diterimaModal"
+                                                data-id="{{ $item->id }}" data-nama="{{ $item->nama_lengkap }}">
+                                                <i class="bi bi-check-circle"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-danger btn-ditolak" type="button"
+                                                data-toggle="modal" data-target="#ditolakModal"
+                                                data-id="{{ $item->id }}" data-nama="{{ $item->nama_lengkap }}">
+                                                <i class="bi bi-x-circle"></i>
+                                            </button>
+                                        @endif
                                     @else
                                         @if ($item->status == 'Diterima')
                                             <small class="badge badge-success">Diterima</small>

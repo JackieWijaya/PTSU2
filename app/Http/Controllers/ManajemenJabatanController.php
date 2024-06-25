@@ -22,7 +22,7 @@ class ManajemenJabatanController extends Controller
         //
         $data_pribadi = data_pribadi::where('users_id', Auth::user()->id)->first();
 
-        if (Auth::user()->role == 'HRD') {
+        if (Auth::user()->role == 'Manager' || Auth::user()->role == 'HRD') {
             $manajemen_jabatans = manajemen_jabatan::all();
             
         } else {

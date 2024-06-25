@@ -27,7 +27,7 @@
         $no = 1;
     @endphp
 
-    @if (Auth::user()->role == 'HRD')
+    @if (Auth::user()->role == 'Manager' || Auth::user()->role == 'HRD')
         @include('data_karyawan.all_data')
     @else
         <div class="card">
@@ -64,16 +64,13 @@
                             href="#tab_4" data-toggle="tab">Data Pendidikan</a>
                     </li>
                     <li class="nav-item flex-fill custom-tab">
-                        <a class="nav-link text-center {{ !$data_pendidikan_status || $data_pendidikan_status->status_isi == '0' || $data_pendidikan_status->status_isi == '2' ? 'disabled' : '' }}"
-                            href="#tab_5" data-toggle="tab">Sertifikat Pelatihan</a>
+                        <a class="nav-link text-center" href="#tab_5" data-toggle="tab">Sertifikat Pelatihan</a>
                     </li>
                     <li class="nav-item flex-fill custom-tab">
-                        <a class="nav-link text-center {{ !$pelatihan_sertifikat_status || $pelatihan_sertifikat_status->status_isi == '0' || $pelatihan_sertifikat_status->status_isi == '2' ? 'disabled' : '' }}"
-                            href="#tab_6" data-toggle="tab">Pengalaman Kerja</a>
+                        <a class="nav-link text-center" href="#tab_6" data-toggle="tab">Pengalaman Kerja</a>
                     </li>
                     <li class="nav-item flex-fill custom-tab">
-                        <a class="nav-link text-center {{ !$pengalaman_kerja_status || $pengalaman_kerja_status->status_isi == '0' || $pengalaman_kerja_status->status_isi == '2' ? 'disabled' : '' }}"
-                            href="#tab_7" data-toggle="tab">Bahasa Asing</a>
+                        <a class="nav-link text-center" href="#tab_7" data-toggle="tab">Bahasa Asing</a>
                     </li>
                 </ul>
             </div>

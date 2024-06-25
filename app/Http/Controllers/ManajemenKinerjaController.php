@@ -18,7 +18,7 @@ class ManajemenKinerjaController extends Controller
     public function index()
     {
         //
-        if (Auth::user()->role == 'HRD') {
+        if (Auth::user()->role != 'Karyawan') {
             $manajemen_kinerjas = manajemen_kinerja::all();
         } else {
             $data_pribadi = data_pribadi::where('users_id', Auth::user()->id)->first();

@@ -8,6 +8,7 @@ use App\Models\devisi;
 use App\Models\jabatan;
 use App\Models\data_pelamar;
 use App\Models\data_pribadi;
+use App\Models\jenis_cuti;
 use App\Models\pengaturan_presensi;
 use Illuminate\Database\Seeder;
 
@@ -26,9 +27,15 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         User::query()->create([
-            'name'     => 'HRD',
+            'name'     => 'Manager',
             'no_hp'    => '081234567890',
             'password' => '081234567890',
+            'role'     => 'Manager',
+        ]);
+        User::query()->create([
+            'name'     => 'HRD',
+            'no_hp'    => '081234567891',
+            'password' => '081234567891',
             'role'     => 'HRD',
         ]);
         User::query()->create([
@@ -95,6 +102,23 @@ class DatabaseSeeder extends Seeder
         ]);
         jabatan::query()->create([
             'nama_jabatan' => 'Gudang',
+        ]);
+
+        jenis_cuti::query()->create([
+            'nama_jenis_cuti' => 'Tahunan',
+            'jatah'           => '12'
+        ]);
+        jenis_cuti::query()->create([
+            'nama_jenis_cuti' => 'Sakit',
+            'jatah'           => '15'
+        ]);
+        jenis_cuti::query()->create([
+            'nama_jenis_cuti' => 'Hamil dan Melahirkan',
+            'jatah'           => '90'
+        ]);
+        jenis_cuti::query()->create([
+            'nama_jenis_cuti' => 'Pernikahan',
+            'jatah'           => '3'
         ]);
 
         data_pelamar::query()->create([
@@ -174,7 +198,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         data_pribadi::query()->create([
-            'users_id'            => '2',
+            'users_id'            => '3',
             'nama_lengkap'        => 'Budi',
             'tanggal_lahir'       => '2002-12-12',
             'jenis_kelamin'       => 'Laki-Laki',
@@ -188,7 +212,7 @@ class DatabaseSeeder extends Seeder
             'status_kawin'        => 'TK',
         ]);
         data_pribadi::query()->create([
-            'users_id'            => '3',
+            'users_id'            => '4',
             'nama_lengkap'        => 'Dewi',
             'tanggal_lahir'       => '2002-06-12',
             'jenis_kelamin'       => 'Perempuan',
@@ -204,7 +228,7 @@ class DatabaseSeeder extends Seeder
             'buku_nikah'          => 'DEWI.jpg',
         ]);
         data_pribadi::query()->create([
-            'users_id'            => '4',
+            'users_id'            => '5',
             'nama_lengkap'        => 'M. Fadli Yuda',
             'tanggal_lahir'       => '2002-03-13',
             'jenis_kelamin'       => 'Laki-Laki',

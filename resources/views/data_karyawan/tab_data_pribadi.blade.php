@@ -720,7 +720,7 @@
             tanggalNikahField.style.display = 'block';
             bukuNikahField.style.display = 'block';
             document.getElementById('tanggal_nikah').setAttribute('required', 'required');
-            // document.getElementById('buku_nikah').setAttribute('required', 'required');
+            document.getElementById('buku_nikah').setAttribute('required', 'required');
         } else {
             tanggalNikahField.style.display = 'none';
             bukuNikahField.style.display = 'none';

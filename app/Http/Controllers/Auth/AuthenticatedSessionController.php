@@ -30,16 +30,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        $no_hp = Auth::user()->no_hp; // Mengambil pengguna yang sedang login
-        $data_pribadi = data_pribadi::where('no_hp', $no_hp)->first();
-
-        // Redirect berdasarkan peran user
-        if (Auth::user()->role === 'Karyawan' && $data_pribadi->status_isi == '1') {
-            return redirect()->intended('/presensi');
-        } else {
-            return redirect()->intended(RouteServiceProvider::HOME);
-        }
-        // return redirect()->intended('/data_karyawan');
+        return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**

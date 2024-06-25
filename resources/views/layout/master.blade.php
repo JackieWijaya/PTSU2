@@ -37,6 +37,7 @@
 
     {{-- ion icon --}}
     <script src="https://unpkg.com/ionicons@latest/dist/ionicons.js"></script>
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
     {{-- ajax & sweetalert --}}
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -104,8 +105,10 @@
                                 @else
                                     {{ Auth::user()->data_pribadi->jabatan->nama_jabatan }}
                                 @endif
-                            @else
+                            @elseif (Auth::user()->role == 'HRD')
                                 HRD
+                            @else
+                                Manager
                             @endif
                         </a>
                     </div>
@@ -168,7 +171,27 @@
                                     </li>
                                 </ul>
                             </li>
+                        @endif
 
+                        <li class="nav-item">
+                            <a href="{{ url('dashboard') }}"
+                                class="nav-link {{ Request::is('dashboard*') ? 'active' : '' }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-dashboard">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M12 13m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                                    <path d="M13.45 11.55l2.05 -2.05" />
+                                    <path d="M6.4 20a9 9 0 1 1 11.2 0z" />
+                                </svg>
+                                <p>
+                                    Dashboard
+                                </p>
+                            </a>
+                        </li>
+
+                        @if (Auth::user()->role != 'Karyawan')
                             <li class="nav-item">
                                 <a href="{{ url('data_pelamar') }}"
                                     class="nav-link {{ Request::is('data_pelamar*') ? 'active' : '' }}">
@@ -211,27 +234,29 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a href="{{ url('presensi') }}"
-                                class="nav-link {{ Request::is('presensi*') ? 'active' : '' }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"
-                                    class="icon icon-tabler icons-tabler-outline icon-tabler-calendar-check">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M11.5 21h-5.5a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v6" />
-                                    <path d="M16 3v4" />
-                                    <path d="M8 3v4" />
-                                    <path d="M4 11h16" />
-                                    <path d="M15 19l2 2l4 -4" />
-                                </svg>
-                                <p>
-                                    Presensi
-                                </p>
-                            </a>
-                        </li>
+                        @if (Auth::user()->role != 'Manager')
+                            <li class="nav-item">
+                                <a href="{{ url('presensi') }}"
+                                    class="nav-link {{ Request::is('presensi*') ? 'active' : '' }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="icon icon-tabler icons-tabler-outline icon-tabler-calendar-check">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M11.5 21h-5.5a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v6" />
+                                        <path d="M16 3v4" />
+                                        <path d="M8 3v4" />
+                                        <path d="M4 11h16" />
+                                        <path d="M15 19l2 2l4 -4" />
+                                    </svg>
+                                    <p>
+                                        Presensi
+                                    </p>
+                                </a>
+                            </li>
+                        @endif
 
-                        @if (Auth::user()->role == 'HRD')
+                        @if (Auth::user()->role != 'Karyawan')
                             <li class="nav-item">
                                 <a href="{{ url('rekap_presensi') }}"
                                     class="nav-link {{ Request::is('rekap_presensi*') ? 'active' : '' }}">

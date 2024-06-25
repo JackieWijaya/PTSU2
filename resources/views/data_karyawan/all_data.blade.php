@@ -3,9 +3,11 @@
 @endphp
 
 <div class="card" id="data-center">
-    <div class="card-header">
-        <a href="{{ url('data_karyawan/create') }}" class="btn btn-primary">Tambah Data Karyawan</a>
-    </div>
+    @if (Auth::user()->role == 'HRD')
+        <div class="card-header">
+            <a href="{{ url('data_karyawan/create') }}" class="btn btn-primary">Tambah Data Karyawan</a>
+        </div>
+    @endif
     <div class="card-body">
         <table id="example1" class="table table-bordered table-striped">
             <thead>
@@ -46,8 +48,12 @@
                         <td>{{ $item->no_hp }}</td>
                         <td>
                             @if ($item->jabatans_id == null)
-                                <a href="#" data-id="{{ $item->id }}"
-                                    class="btn btn-sm btn-primary input-btn">Input</a>
+                                @if (Auth::user()->role == 'HRD')
+                                    <a href="#" data-id="{{ $item->id }}"
+                                        class="btn btn-sm btn-primary input-btn">Input</a>
+                                @else
+                                    -
+                                @endif
                             @else
                                 {{ $item->jabatan->nama_jabatan }}
                             @endif
@@ -62,14 +68,16 @@
                         <td>
                             <a href="#" data-id="{{ $item->id }}"
                                 class="btn btn-sm btn-info detail-info-btn">Detail Info</a>
-                            <a href="" data-id="{{ $item->id }}" data-nama="{{ $item->nama_lengkap }}"
-                                data-nik="{{ $item->nik }}" data-toggle="modal"
-                                data-target="#editModal"class="btn btn-sm btn-warning btn-edit"><span
-                                    class="bi bi-pencil-square"></span></a>
-                            <button class="btn btn-sm btn-danger btn-hapus" data-id="{{ $item->id }}"
-                                data-nama="{{ $item->nama_lengkap }}" data-nik="{{ $item->nik }}"
-                                data-toggle="modal" data-target="#deleteModal"><span
-                                    class="bi bi-trash3"></span></button>
+                            @if (Auth::user()->role == 'HRD')
+                                <a href="" data-id="{{ $item->id }}" data-nama="{{ $item->nama_lengkap }}"
+                                    data-nik="{{ $item->nik }}" data-toggle="modal"
+                                    data-target="#editModal"class="btn btn-sm btn-warning btn-edit"><span
+                                        class="bi bi-pencil-square"></span></a>
+                                <button class="btn btn-sm btn-danger btn-hapus" data-id="{{ $item->id }}"
+                                    data-nama="{{ $item->nama_lengkap }}" data-nik="{{ $item->nik }}"
+                                    data-toggle="modal" data-target="#deleteModal"><span
+                                        class="bi bi-trash3"></span></button>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

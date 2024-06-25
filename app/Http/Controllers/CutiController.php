@@ -18,7 +18,7 @@ class CutiController extends Controller
     public function index()
     {
         //
-        if (Auth::user()->role == 'HRD') {
+        if (Auth::user()->role != 'Karyawan') {
             $cutis = cuti::all();
         } else {
             $data_pribadi = data_pribadi::where('users_id', Auth::user()->id)->first();
@@ -37,7 +37,7 @@ class CutiController extends Controller
             ->join('data_pribadis', 'users.no_hp', '=', 'data_pribadis.no_hp')
             ->where('users.role', '!=', 'HRD')
             ->where('data_pribadis.nik', '!=', null)
-            ->where('data_pribadis.jabatans_id', '!=', null)
+            // ->where('data_pribadis.jabatans_id', '!=', null)
             ->get();
         $jenis_cutis = jenis_cuti::all();
 

@@ -23,6 +23,7 @@ use App\Http\Controllers\CutiController;
 use App\Http\Controllers\ManajemenKinerjaController;
 use App\Http\Controllers\PengaturanPresensiController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Models\data_pribadi;
@@ -39,20 +40,15 @@ use App\Models\data_pribadi;
 */
 
 Route::get('/', function () {
-    if (Auth::check()) {
-        $no_hp = Auth::user()->no_hp; // Mengambil pengguna yang sedang login
-        $data_pribadi = data_pribadi::where('no_hp', $no_hp)->first();
+    if (Auth::user()) {
+        return redirect('/dashboard');
 
-        if (Auth::user()->role === 'Karyawan' && $data_pribadi->status_isi == '1') {
-            return redirect('/presensi');
-        } else {
-            return redirect('/data_karyawan');
-        }
     }
 
     return view('auth.login');
 });
 
+Route::resource('/dashboard', DashboardController::class)->middleware(['auth', 'verified']);
 Route::resource('/devisi', DevisiController::class)->middleware(['auth', 'verified']);
 Route::resource('/jabatan', JabatanController::class)->middleware(['auth', 'verified']);
 Route::resource('/jenis_cuti', JenisCutiController::class)->middleware(['auth', 'verified']);
