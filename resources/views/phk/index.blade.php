@@ -40,7 +40,10 @@
                         <th>Catatan</th>
                         <th>Tanggal</th>
                         <th>Status</th>
-                        <th>#</th>
+                        @if (Auth::user()->role != 'Manager')
+                            <th>#</th>
+                        @endif
+
                     </tr>
                 </thead>
                 <tbody>
@@ -94,29 +97,31 @@
                                     @endif
                                 @endif
                             </td>
-                            <td>
-                                @if (Auth::user()->role == 'HRD')
-                                    @if ($item->status == '1')
+                            @if (Auth::user()->role != 'Manager')
+                                <td>
+                                    @if (Auth::user()->role == 'HRD')
+                                        @if ($item->status == '1')
+                                            <a href="{{ url('phk/' . $item->id . '/edit') }}"
+                                                class="btn btn-sm btn-warning"><span class="bi bi-pencil-square"></span></a>
+                                            <button class="btn btn-sm btn-danger btn-hapus" data-id="{{ $item->id }}"
+                                                data-nik="{{ $item->nik }}"
+                                                data-nama="{{ $item->data_pribadi->nama_lengkap }}" data-toggle="modal"
+                                                data-target="#deleteModal"><span class="bi bi-trash3"></span></button>
+                                        @else
+                                            -
+                                        @endif
+                                    @else
                                         <a href="{{ url('phk/' . $item->id . '/edit') }}"
-                                            class="btn btn-sm btn-warning"><span class="bi bi-pencil-square"></span></a>
+                                            class="btn btn-sm btn-warning @if ($item->status != 0) disabled @endif"
+                                            @disabled($item->status != 0)><span class="bi bi-pencil-square"></span></a>
                                         <button class="btn btn-sm btn-danger btn-hapus" data-id="{{ $item->id }}"
                                             data-nik="{{ $item->nik }}"
                                             data-nama="{{ $item->data_pribadi->nama_lengkap }}" data-toggle="modal"
-                                            data-target="#deleteModal"><span class="bi bi-trash3"></span></button>
-                                    @else
-                                        -
+                                            data-target="#deleteModal" @disabled($item->status != 0)><span
+                                                class="bi bi-trash3"></span></button>
                                     @endif
-                                @else
-                                    <a href="{{ url('phk/' . $item->id . '/edit') }}"
-                                        class="btn btn-sm btn-warning @if ($item->status != 0) disabled @endif"
-                                        @disabled($item->status != 0)><span class="bi bi-pencil-square"></span></a>
-                                    <button class="btn btn-sm btn-danger btn-hapus" data-id="{{ $item->id }}"
-                                        data-nik="{{ $item->nik }}" data-nama="{{ $item->data_pribadi->nama_lengkap }}"
-                                        data-toggle="modal" data-target="#deleteModal" @disabled($item->status != 0)><span
-                                            class="bi bi-trash3"></span></button>
-                                @endif
-                            </td>
-
+                                </td>
+                            @endif
                         </tr>
                     @endforeach
                 </tbody>
